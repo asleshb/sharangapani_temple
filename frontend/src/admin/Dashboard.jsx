@@ -1,76 +1,111 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import AdminLayout from "./AdminLayout";
 import "./Dashboard.css";
 
 const Dashboard = () => {
-  const [adminUser, setAdminUser] = useState(null);
-  const navigate = useNavigate();
+  const [stats, setStats] = useState({
+    todayPujas: 0,
+    upcomingPujas: 0,
+    thisMonthBookings: 0,
+    totalBookings: 0,
+  });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("adminUser");
-    if (storedUser) {
-      try {
-        setAdminUser(JSON.parse(storedUser));
-      } catch (err) {
-        console.error("Failed to parse stored admin user data", err);
-      }
-    }
+    fetchDashboardStats();
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("adminToken");
-    localStorage.removeItem("adminUser");
-    navigate("/admin/login");
+  const fetchDashboardStats = async () => {
+    try {
+      const token = localStorage.getItem("adminToken");
+      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
+      const res = await fetch(`${apiUrl}/api/dashboard/stats`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success && data.stats) {
+        setStats(data.stats);
+      }
+    } catch (err) {
+      console.error("Failed to load dashboard stats", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const adminName = adminUser?.name || "Temple Admin";
-
   return (
-    <div className="dashboard-container">
-      <nav className="dashboard-navbar">
-        <div className="dashboard-logo">
-          <span className="dashboard-om">ॐ</span>
-          <div className="dashboard-title">
-            <h1>Temple Admin Dashboard</h1>
-            <span>Sri Sharangapani Mahavishnu Temple</span>
-          </div>
-        </div>
-
-        <div className="dashboard-user-info">
-          <span className="admin-badge">👤 {adminName}</span>
-          <button className="logout-btn" onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
-      </nav>
-
-      <main className="dashboard-content">
-        <div className="welcome-card">
-          <div className="welcome-header">
-            <span className="welcome-om">ॐ</span>
+    <AdminLayout>
+      <div className="dashboard-view-container">
+        {/* Welcome Banner */}
+        <div className="dashboard-welcome-banner">
+          <div className="welcome-banner-header">
+            <span className="welcome-banner-om">ॐ</span>
             <div>
-              <h2>Welcome, {adminName}</h2>
-              <p>Logged in as: {adminUser?.email || "admin@temple.com"}</p>
-            </div>
-          </div>
-
-          <div className="auth-success-badge">
-            <span>✅</span> Authentication successful.
-          </div>
-
-          <div className="dashboard-grid">
-            <div className="stat-card">
-              <h3>Admin Session</h3>
-              <p>Active secure token verified with JWT authentication protocol.</p>
-            </div>
-            <div className="stat-card">
-              <h3>Temple Management System</h3>
-              <p>Authorized access granted for administrative operations.</p>
+              <h2>Welcome, Admin</h2>
+              <p>Temple Annual Puja Management</p>
             </div>
           </div>
         </div>
-      </main>
-    </div>
+
+        {/* Dashboard Statistics Cards (2-column on Mobile) */}
+        <div className="stats-grid-container">
+          <div className="stat-metric-card">
+            <div className="stat-info">
+              <h3>Today's Annual Pujas</h3>
+              <div className="stat-number">{loading ? "..." : stats.todayPujas}</div>
+            </div>
+            <div className="stat-icon-badge">🛕</div>
+          </div>
+
+          <div className="stat-metric-card">
+            <div className="stat-info">
+              <h3>Upcoming Annual Pujas</h3>
+              <div className="stat-number">{loading ? "..." : stats.upcomingPujas}</div>
+            </div>
+            <div className="stat-icon-badge">📅</div>
+          </div>
+
+          <div className="stat-metric-card">
+            <div className="stat-info">
+              <h3>This Month</h3>
+              <div className="stat-number">{loading ? "..." : stats.thisMonthBookings}</div>
+            </div>
+            <div className="stat-icon-badge">📊</div>
+          </div>
+
+          <div className="stat-metric-card">
+            <div className="stat-info">
+              <h3>Total Annual Pujas</h3>
+              <div className="stat-number">{loading ? "..." : stats.totalBookings}</div>
+            </div>
+            <div className="stat-icon-badge">📜</div>
+          </div>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="quick-actions-card">
+          <h3>Quick Actions</h3>
+          <div className="action-buttons-grid">
+            <Link to="/admin/pujas?tab=add" className="quick-action-btn">
+              <span>➕</span> Add Annual Puja
+            </Link>
+
+            <Link to="/admin/pujas" className="quick-action-btn">
+              <span>📋</span> All Annual Pujas
+            </Link>
+
+            <Link to="/admin/pujas/calendar" className="quick-action-btn full-mobile">
+              <span>📅</span> Calendar View
+            </Link>
+          </div>
+        </div>
+      </div>
+    </AdminLayout>
   );
 };
 

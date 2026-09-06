@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import Admin from "../models/Admin.js";
 
 export const protectAdmin = async (req, res, next) => {
   try {
@@ -13,20 +12,32 @@ export const protectAdmin = async (req, res, next) => {
     }
 
     if (!token) {
-      return res.status(401).json({ message: "Not authorized, no token provided" });
+      return res.status(401).json({
+        success: false,
+        message: "Not authorized, no token provided",
+      });
     }
 
-    const secret = process.env.JWT_SECRET || "default_jwt_secret";
+    const secret = process.env.JWT_SECRET || "CHANGE_THIS_TO_A_LONG_RANDOM_SECRET";
     const decoded = jwt.verify(token, secret);
 
-    const admin = await Admin.findById(decoded.id).select("-passwordHash");
-    if (!admin) {
-      return res.status(401).json({ message: "Admin account no longer exists" });
+    if (decoded.role !== "admin") {
+      return res.status(401).json({
+        success: false,
+        message: "Not authorized as admin",
+      });
     }
 
-    req.admin = admin;
+    req.admin = {
+      email: decoded.email,
+      role: decoded.role,
+    };
+
     next();
   } catch (error) {
-    return res.status(401).json({ message: "Invalid or expired token" });
+    return res.status(401).json({
+      success: false,
+      message: "Invalid or expired token",
+    });
   }
 };

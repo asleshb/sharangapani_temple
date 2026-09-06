@@ -1,0 +1,509 @@
+/* Puja Bookings View Styling */
+.pujas-management-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.pujas-header-tabs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--admin-gold-border);
+  padding-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tab-buttons-group {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.tab-btn {
+  padding: 10px 18px;
+  border: 1px solid var(--admin-gold-border);
+  background: var(--admin-card);
+  color: var(--admin-maroon);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  border-color: var(--admin-gold);
+  background: var(--admin-gold-light);
+}
+
+.tab-btn.active {
+  background: var(--admin-maroon);
+  color: var(--admin-text-cream);
+  border-color: var(--admin-gold);
+}
+
+/* Alert Messages (Muted Semantic Tints) */
+.booking-alert-box {
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.booking-alert-box.success {
+  background: var(--admin-success-bg);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: var(--admin-success-text);
+}
+
+.booking-alert-box.error {
+  background: var(--admin-error-bg);
+  border: 1px solid rgba(220, 38, 38, 0.25);
+  color: var(--admin-error-text);
+}
+
+/* Form Container */
+.puja-form-card {
+  background: var(--admin-card);
+  border: 1px solid var(--admin-gold-border);
+  border-radius: 14px;
+  padding: 28px 32px;
+  max-width: 600px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.puja-form-card h2 {
+  font-size: 1.3rem;
+  color: var(--admin-maroon);
+  margin: 0 0 18px;
+  border-bottom: 2px solid var(--admin-gold-light);
+  padding-bottom: 8px;
+}
+
+.puja-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--admin-text);
+}
+
+.form-field-group input,
+.form-field-group select {
+  padding: 11px 14px;
+  border: 1px solid var(--admin-gold-border);
+  border-radius: 8px;
+  font-size: 0.92rem;
+  outline: none;
+  background: var(--admin-card-bg);
+  color: var(--admin-text);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.form-field-group input:focus,
+.form-field-group select:focus {
+  border-color: var(--admin-gold);
+  box-shadow: 0 0 6px rgba(197, 155, 39, 0.25);
+}
+
+.form-submit-btn {
+  padding: 13px;
+  background: var(--admin-maroon);
+  color: var(--admin-text-cream);
+  border: 1px solid var(--admin-gold);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.2s ease;
+}
+
+.form-submit-btn:hover {
+  background: var(--admin-maroon-dark);
+  box-shadow: 0 4px 12px rgba(197, 155, 39, 0.25);
+}
+
+.form-cancel-btn {
+  padding: 11px;
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Filters & Table Section */
+.pujas-table-card {
+  background: var(--admin-card);
+  border: 1px solid var(--admin-gold-border);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.filters-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.search-input-box {
+  flex: 1;
+  min-width: 260px;
+  position: relative;
+}
+
+.search-input-box input {
+  width: 100%;
+  padding: 10px 14px 10px 36px;
+  border: 1px solid var(--admin-gold-border);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+  background: var(--admin-card-bg);
+  box-sizing: border-box;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--admin-text-muted);
+  font-size: 0.9rem;
+}
+
+.date-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.date-filter-group select,
+.date-filter-group input {
+  padding: 10px 14px;
+  border: 1px solid var(--admin-gold-border);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+  background: var(--admin-card-bg);
+}
+
+/* Desktop Table View */
+.desktop-table-container {
+  display: block;
+}
+
+.table-responsive-wrapper {
+  overflow-x: auto;
+}
+
+.bookings-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.bookings-data-table th {
+  background: var(--admin-maroon);
+  color: var(--admin-text-cream);
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--admin-gold);
+}
+
+.bookings-data-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.92rem;
+  color: var(--admin-text);
+}
+
+.bookings-data-table tr:hover {
+  background: var(--admin-gold-light);
+}
+
+/* Sophisticated Unified Action Buttons System */
+.action-btns-cell {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* VIEW: Warm White / Cream background + Muted Gold border + Dark Maroon text */
+.action-btn.view {
+  background: var(--admin-card-bg);
+  border: 1px solid var(--admin-gold-border);
+  color: var(--admin-maroon);
+}
+
+.action-btn.view:hover {
+  background: var(--admin-gold-light);
+  border-color: var(--admin-gold);
+}
+
+/* EDIT: Muted Gold Cream background + Dark Maroon text */
+.action-btn.edit {
+  background: var(--admin-gold-light);
+  border: 1px solid var(--admin-gold-border);
+  color: var(--admin-maroon);
+}
+
+.action-btn.edit:hover {
+  background: rgba(197, 155, 39, 0.28);
+  border-color: var(--admin-gold);
+}
+
+/* DELETE: Subtle Muted Red Tint + Dark Red Text */
+.action-btn.delete {
+  background: var(--admin-error-bg);
+  border: 1px solid rgba(220, 38, 38, 0.25);
+  color: var(--admin-error-text);
+}
+
+.action-btn.delete:hover {
+  background: rgba(220, 38, 38, 0.16);
+  border-color: rgba(220, 38, 38, 0.4);
+}
+
+/* Mobile Booking Cards Container */
+.mobile-booking-cards-container {
+  display: none;
+}
+
+/* Modal Styling */
+.modal-backdrop-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.modal-dialog-card {
+  background: var(--admin-card);
+  border-radius: 14px;
+  border: 1px solid var(--admin-gold-border);
+  width: 100%;
+  max-width: 480px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.modal-dialog-card h3 {
+  font-size: 1.2rem;
+  color: var(--admin-maroon);
+  margin: 0 0 16px;
+  border-bottom: 2px solid var(--admin-gold-light);
+  padding-bottom: 8px;
+}
+
+.detail-row {
+  display: flex;
+  margin-bottom: 12px;
+  font-size: 0.92rem;
+}
+
+.detail-row strong {
+  width: 120px;
+  color: var(--admin-text-muted);
+}
+
+.detail-row span {
+  color: var(--admin-text);
+  font-weight: 600;
+}
+
+.modal-actions-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Mobile Responsive Adjustments (<= 768px) */
+@media (max-width: 768px) {
+  .pujas-management-container {
+    gap: 14px;
+  }
+
+  .pujas-header-tabs {
+    padding-bottom: 8px;
+  }
+
+  .tab-buttons-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    width: 100%;
+  }
+
+  .tab-btn {
+    padding: 8px 4px;
+    font-size: 0.78rem;
+    text-align: center;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+
+  .puja-form-card {
+    padding: 18px 16px;
+    border-radius: 10px;
+  }
+
+  .puja-form-card h2 {
+    font-size: 1.05rem;
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+  }
+
+  .pujas-table-card {
+    padding: 16px 14px;
+    border-radius: 10px;
+  }
+
+  .filters-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .search-input-box {
+    min-width: 100%;
+  }
+
+  .search-input-box input {
+    padding: 9px 12px 9px 34px;
+    font-size: 0.85rem;
+  }
+
+  .date-filter-group {
+    width: 100%;
+  }
+
+  .date-filter-group select,
+  .date-filter-group input {
+    width: 100%;
+    padding: 9px 12px;
+    font-size: 0.85rem;
+  }
+
+  /* Hide Desktop Table on Mobile */
+  .desktop-table-container {
+    display: none;
+  }
+
+  /* Display Mobile Cards on Mobile */
+  .mobile-booking-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .mobile-booking-card {
+    background: var(--admin-card-bg);
+    border: 1px solid var(--admin-gold-border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  }
+
+  .mobile-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--admin-gold-light);
+    padding-bottom: 8px;
+  }
+
+  .mobile-card-date {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--admin-maroon);
+  }
+
+  .mobile-card-type {
+    background: var(--admin-gold-light);
+    color: var(--admin-maroon);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 10px;
+    border: 1px solid var(--admin-gold-border);
+  }
+
+  .mobile-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.88rem;
+    color: var(--admin-text);
+  }
+
+  .mobile-card-field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mobile-card-field strong {
+    font-weight: 600;
+    color: var(--admin-text);
+  }
+
+  .mobile-card-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+    border-top: 1px dashed #e5e7eb;
+    padding-top: 10px;
+  }
+
+  .mobile-card-actions .action-btn {
+    flex: 1;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 0.78rem;
+  }
+}

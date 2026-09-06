@@ -1,6 +1,9 @@
+import React, { useState } from "react";
 import "../App.css";
 
 function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div className="app">
       {/* Navigation */}
@@ -18,6 +21,7 @@ function Home() {
           </div>
         </div>
 
+        {/* Desktop Navigation Links */}
         <div className="nav-links">
           <a href="#about">About</a>
           <a href="#festivals">Festivals</a>
@@ -27,11 +31,61 @@ function Home() {
           <a href="#visit">Visit</a>
           <a href="#offerings">Offerings</a>
           <a href="#events">Events</a>
-          <a href="/admin/login" className="admin-link-btn" style={{ marginLeft: '12px', padding: '6px 14px', borderRadius: '4px', border: '1px solid rgba(212, 175, 55, 0.5)', color: '#d4af37', textDecoration: 'none' }}>Admin Login</a>
         </div>
 
-        <button className="menu-button">☰</button>
+        {/* Mobile Hamburger Button */}
+        <button 
+          className="menu-button" 
+          onClick={() => setIsMenuOpen(true)}
+          aria-label="Open navigation menu"
+        >
+          ☰
+        </button>
       </nav>
+
+      {/* Mobile Navigation Menu Overlay */}
+      {isMenuOpen && (
+        <div className="mobile-menu-overlay">
+          <div className="mobile-menu-header">
+            <div className="logo">
+              <div className="om-symbol">ॐ</div>
+              <div className="logo-text">
+                <div className="temple-name-small">SHRI TEMPLE</div>
+                <div className="temple-subtitle">TEMPLE</div>
+              </div>
+            </div>
+            <button 
+              className="mobile-menu-close" 
+              onClick={() => setIsMenuOpen(false)}
+              aria-label="Close navigation menu"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div className="mobile-menu-links">
+            <a href="#about" onClick={() => setIsMenuOpen(false)}>About</a>
+            <a href="#festivals" onClick={() => setIsMenuOpen(false)}>Festivals</a>
+            <a href="#tradition" onClick={() => setIsMenuOpen(false)}>Tradition</a>
+            <a href="#gallery" onClick={() => setIsMenuOpen(false)}>Gallery</a>
+            <a href="#timings" onClick={() => setIsMenuOpen(false)}>Timings</a>
+            <a href="#visit" onClick={() => setIsMenuOpen(false)}>Visit</a>
+            <a href="#offerings" onClick={() => setIsMenuOpen(false)}>Offerings</a>
+            <a href="#hall-booking" onClick={() => setIsMenuOpen(false)}>Hall Booking</a>
+            <a href="#events" onClick={() => setIsMenuOpen(false)}>Events</a>
+
+            <div className="mobile-menu-divider"></div>
+
+            <a 
+              href="/admin/login" 
+              onClick={() => setIsMenuOpen(false)} 
+              className="mobile-admin-link"
+            >
+              🔐 Admin Login
+            </a>
+          </div>
+        </div>
+      )}
 
       {/* Hero */}
       <section className="hero">

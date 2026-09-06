@@ -14,8 +14,8 @@ const Login = () => {
     e.preventDefault();
     setError("");
 
-    if (!email.trim() || !password.trim()) {
-      setError("Please fill in both Email and Password.");
+    if (!email.trim() || !password) {
+      setError("Please enter both email and password.");
       return;
     }
 
@@ -37,11 +37,11 @@ const Login = () => {
 
       const data = await response.json();
 
-      if (!response.ok) {
+      if (!response.ok || !data.success) {
         throw new Error(data.message || "Invalid email or password");
       }
 
-      // Save authentication state
+      // Save authentication token & session
       localStorage.setItem("adminToken", data.token);
       localStorage.setItem("adminUser", JSON.stringify(data.admin));
 
@@ -49,9 +49,9 @@ const Login = () => {
       navigate("/admin/dashboard");
     } catch (err) {
       if (err.name === "TypeError" && err.message.includes("fetch")) {
-        setError("Server unavailable. Please check if backend server is running.");
+        setError("Server unavailable. Please check backend connection.");
       } else {
-        setError(err.message || "Something went wrong. Please try again.");
+        setError(err.message || "Invalid email or password");
       }
     } finally {
       setLoading(false);
@@ -75,7 +75,7 @@ const Login = () => {
 
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="email">Email Address</label>
+            <label htmlFor="email">Email</label>
             <input
               id="email"
               type="email"
@@ -105,7 +105,7 @@ const Login = () => {
             className="login-submit-btn"
             disabled={loading}
           >
-            {loading ? "Authenticating..." : "Login to Admin Portal"}
+            {loading ? "Authenticating..." : "LOGIN"}
           </button>
         </form>
 

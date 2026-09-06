@@ -1,0 +1,248 @@
+/* Puja Calendar Styling */
+.calendar-view-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.calendar-card-wrapper {
+  background: var(--admin-card);
+  border: 1px solid var(--admin-gold-border);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.calendar-header-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--admin-gold-light);
+  padding-bottom: 12px;
+}
+
+.calendar-month-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--admin-maroon);
+  margin: 0;
+}
+
+.calendar-nav-btn {
+  background: var(--admin-maroon);
+  color: var(--admin-text-cream);
+  border: 1px solid var(--admin-gold);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.calendar-nav-btn:hover {
+  background: var(--admin-maroon-dark);
+  box-shadow: 0 2px 8px rgba(197, 155, 39, 0.25);
+}
+
+.calendar-grid-table {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  text-align: center;
+}
+
+.calendar-day-header {
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--admin-text-muted);
+  text-transform: uppercase;
+  padding: 6px 0;
+  background: var(--admin-gold-light);
+  border-radius: 6px;
+}
+
+.calendar-day-cell {
+  min-height: 80px;
+  background: var(--admin-card-bg);
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.calendar-day-cell:hover {
+  border-color: var(--admin-gold);
+  background: var(--admin-gold-light);
+}
+
+.calendar-day-cell.empty {
+  background: transparent;
+  border: none;
+  cursor: default;
+}
+
+.calendar-day-cell.selected {
+  border: 2px solid var(--admin-gold);
+  background: rgba(197, 155, 39, 0.18);
+}
+
+.calendar-day-number {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--admin-maroon);
+  text-align: left;
+}
+
+.booking-badge-indicator {
+  align-self: flex-end;
+  background: var(--admin-maroon);
+  color: var(--admin-text-cream);
+  border: 1px solid var(--admin-gold-border);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Day Details Panel */
+.day-details-panel {
+  background: var(--admin-card);
+  border: 1px solid var(--admin-gold-border);
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.day-details-panel h3 {
+  font-size: 1.1rem;
+  color: var(--admin-maroon);
+  margin: 0 0 14px;
+  border-bottom: 2px solid var(--admin-gold-light);
+  padding-bottom: 6px;
+}
+
+.day-bookings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.day-booking-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: var(--admin-card-bg);
+  border: 1px solid var(--admin-gold-border);
+  border-radius: 8px;
+}
+
+.day-booking-info strong {
+  color: var(--admin-text);
+  font-size: 0.9rem;
+}
+
+.day-booking-info span {
+  color: var(--admin-text-muted);
+  font-size: 0.82rem;
+  margin-left: 6px;
+}
+
+.day-booking-type {
+  background: var(--admin-gold-light);
+  color: var(--admin-maroon);
+  border: 1px solid var(--admin-gold-border);
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 0.78rem;
+}
+
+/* Mobile Responsive Adjustments (<= 768px) */
+@media (max-width: 768px) {
+  .calendar-view-container {
+    gap: 14px;
+  }
+
+  .calendar-card-wrapper {
+    padding: 14px 10px;
+    border-radius: 10px;
+  }
+
+  .calendar-header-controls {
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+  }
+
+  .calendar-month-title {
+    font-size: 0.95rem;
+  }
+
+  .calendar-nav-btn {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    border-radius: 6px;
+  }
+
+  .calendar-grid-table {
+    gap: 3px;
+  }
+
+  .calendar-day-header {
+    font-size: 0.7rem;
+    padding: 4px 0;
+    border-radius: 4px;
+  }
+
+  .calendar-day-cell {
+    min-height: 52px;
+    padding: 4px 2px;
+    border-radius: 6px;
+  }
+
+  .calendar-day-number {
+    font-size: 0.78rem;
+  }
+
+  .booking-badge-indicator {
+    font-size: 0.6rem;
+    padding: 1px 3px;
+    border-radius: 6px;
+  }
+
+  .day-details-panel {
+    padding: 14px 12px;
+    border-radius: 10px;
+  }
+
+  .day-details-panel h3 {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    padding-bottom: 4px;
+  }
+
+  .day-booking-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 8px 10px;
+  }
+
+  .day-booking-info span {
+    display: block;
+    margin-left: 0;
+    margin-top: 2px;
+  }
+
+  .day-booking-type {
+    font-size: 0.72rem;
+  }
+}
